@@ -66,6 +66,8 @@ func main() {
 	e := gin.Default()
 
 	context := svc.NewServiceContext(c)
+	defer context.Mysql.Close()
+	defer context.Redis.Close()
 
 	e.GET(Ping(context))
 }
